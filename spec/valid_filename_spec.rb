@@ -1,15 +1,17 @@
 # -*- encoding: UTF-8 -*-
 require File.expand_path(File.join('./', 'spec_helper'), File.dirname(__FILE__))
 
+str =  ValidFilename::INVALID_CHARS
+
 describe ValidFilename do
   it "#replace" do
-    ValidFilename.replace("\:/*?<>|").should == "_______"
+    ValidFilename.replace(str).should == Array.new(str.size).map{ "_" }.join
   end
 end
 
 describe String do
   it "#valid_filename" do
-    "\:/*?<>|".valid_filename.should == "_______"
+    str.valid_filename.should == Array.new(str.size).map{ "_" }.join
   end
 end
 

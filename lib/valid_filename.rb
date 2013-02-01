@@ -1,11 +1,11 @@
 require "valid_filename/version"
 
 module ValidFilename
-  INVALID_CHARS = Regexp.new('[\/:*?"<>|]')
+  INVALID_CHARS = '\\\/:*?"<>|'
   REPACE_STRING = "_"
 
   def self.replace(str, c = REPACE_STRING)
-    str.gsub INVALID_CHARS, c
+    str.gsub Regexp.new("[" + INVALID_CHARS + "]"), c
   end
 end
 
